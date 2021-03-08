@@ -1,15 +1,28 @@
 import React, { useState } from 'react'
 import './App.css'
-import Amplify, { Storage } from 'aws-amplify'
+import { MdSend /* MdList */ } from 'react-icons/md'
+
+import Amplify, { Auth, Storage } from 'aws-amplify';
 import {
   AmplifyAuthenticator,
   AmplifySignOut,
   AmplifySignIn,
   AmplifySignUp,
 } from '@aws-amplify/ui-react'
-import { MdSend /* MdList */ } from 'react-icons/md'
-import awsConfig from './aws-exports'
-Amplify.configure(awsConfig)
+Amplify.configure({
+  Auth: {
+      identityPoolId: 'us-east-1:fc7f1aee-5459-429b-a509-9c058927191d',
+      region: 'us-east-1',
+      userPoolId: 'us-east-1_XsOkndCB3',
+      userPoolWebClientId: '71aio9ja2nbt28bgj2n9m4th6s',
+  },
+  Storage: {
+      AWSS3: {
+          bucket: 'octank-textract-work-order',
+          region: 'us-east-1',
+      }
+  }
+});
 
 const App = () => {
   const [name, setName] = useState('')
@@ -33,7 +46,7 @@ const App = () => {
       })
         .then((result) => {
           console.log(result)
-          setResponse(`Success uploading file: ${name}!`)
+          setResponse(`Success uploading work order/s: ${name}!`)
         })
         .then(() => {
           document.getElementById('file-input').value = null
@@ -50,30 +63,31 @@ const App = () => {
 
   return (
     <AmplifyAuthenticator>
+      
       <AmplifySignIn
-        headerText='AWS TCS Team, Sign-In with Your E-Mail Address'
+        headerText='Octank Field Agents, Sign-In with Your E-Mail Address'
         slot='sign-in'
       />
       <AmplifySignUp
-        headerText='AWS TCS Team, Sign-Up with Your Valid E-Mail Address'
+        headerText='Octank Field Agents, Sign-Up with Your Valid E-Mail Address'
         slot='sign-up'
       />
       <div className='header'>
-        <h2>
-          <a href='/'>TCS Team Video Uploader</a>
-        </h2>
+        <h4>
+          <a href='/'>Welcome, agents upload your work order below (pdf only)</a>
+        </h4>
       </div>
       <div className='video-uploader'>
         <form onSubmit={(e) => onSubmit(e)}>
           <p>
-            <label className='select-label'>Select video: </label>
+            <label className='select-label'>Select File: </label>
           </p>
           <p>
             <input
               className='video-input'
               type='file'
               id='file-input'
-              accept='image/*, video/*'
+              accept='application/pdf'
               onChange={(e) => onChange(e)}
             />
           </p>

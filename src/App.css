@@ -1,7 +1,7 @@
 :root {
-  --amplify-primary-color: darkslateblue;
-  --amplify-primary-tint: rgb(39, 39, 151); 
-  --amplify-primary-shade: rgb(105, 95, 171);
+  --amplify-primary-color: #1890FF;
+  --amplify-primary-tint: #1890FF;
+  --amplify-primary-shade: #1890FF;
 }
 
 .App {
