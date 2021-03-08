@@ -74,13 +74,13 @@ const App = () => {
       />
       <div className='header'>
         <h4>
-          <a href='/'>Welcome, agents upload your work order below (pdf only)</a>
+          <a href='/'>Work Order Textraction App</a>
         </h4>
       </div>
       <div className='video-uploader'>
         <form onSubmit={(e) => onSubmit(e)}>
           <p>
-            <label className='select-label'>Select File: </label>
+            <label className='select-label'>Select File (pdf): </label>
           </p>
           <p>
             <input
@@ -92,7 +92,7 @@ const App = () => {
             />
           </p>
           <button type='submit' className='btn'>
-            Submit <MdSend className='btn-icon' />
+            Upload <MdSend className='btn-icon' />
           </button>
         </form>
       </div>
