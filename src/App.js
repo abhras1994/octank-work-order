@@ -74,7 +74,7 @@ const App = () => {
       />
       <div className='header'>
         <h4>
-          <a href='/'>Work Order Textraction App - Feature Branch</a>
+          <a href='/'>Work Order Textraction App</a>
         </h4>
       </div>
       <div className='video-uploader'>
